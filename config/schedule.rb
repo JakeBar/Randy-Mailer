@@ -17,4 +17,9 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+every :day, at: '6am' do
+  # specify the task name as a string
+  rake 'send_surf_report'
+end
+
 # Learn more: http://github.com/javan/whenever

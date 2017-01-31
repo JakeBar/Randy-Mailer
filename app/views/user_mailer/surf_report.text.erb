@@ -1,0 +1,13 @@
+Welcome, <%= @user.login %>
+===============================================
+
+Today's surf report rating:
+<%= @user.surf_data['solidRating'] %>/5..
+
+Reported at:
+<%= Time.at(@user.surf_data['timestamp']).to_time %>
+
+Got a suggestion or feedback for this report? Send an email to @user.email.
+
+Have a great day!
+Love - Randy, Surf Mailer
