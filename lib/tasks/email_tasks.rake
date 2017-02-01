@@ -7,7 +7,7 @@ end
 desc 'send surf report'
 task send_surf_report: :environment do
 
-  url = 'http://magicseaweed.com/api/1/forecast/?spot_id=616&fields=timestamp,swell.*,solidRating'
+  url = 'http://magicseaweed.com/api/1/forecast/?spot_id=1070'
   uri = URI(url)
   response = Net::HTTP.get(uri)
   result = ActiveSupport::JSON.decode(response)

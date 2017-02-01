@@ -11,7 +11,10 @@
     </p>
     <p>
       Reported at:
-      <%= Time.at(@user.surf_data['timestamp']).to_time %>.<br>
+      <%= Time.at(@user.surf_data['localTimestamp']).to_time %>.<br>
+    </p>
+    <p>
+      Evening Forcast:
     </p>
     <p>
       Got a suggestion or feedback for this report? Send an email to <%= @user.email %>.
