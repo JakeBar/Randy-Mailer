@@ -2,17 +2,16 @@ G'day, <%= @user.login %>
 ===============================================
 
 Today's surf report rating:
-<%= @user.surf_data['solidRating'] %>/5. That's pretty good!
+
+<%= @user.surf_data[0]['solidRating'] %>/5. That's pretty good!
 
 Basic Stats
 ===============================================
 
-Min/Max Wave Ht (ft) - <%= @user.surf_data['swell']['minBreakingHeight'] %>/<%= @user.surf_data['swell']['minBreakingHeight'] %>
-Wind Direction - <%= @user.surf_data['swell']['components']['combined']['compassDirection'] %>
-Temperature - <%= @user.surf_data['condition']['temperature']%> <%= @user.surf_data['condition']['unit'] %>
-
-Reported at:
-<%= Time.at(@user.surf_data['localTimestamp']).to_time %>
+<% @user.surf_data.each do |p| %>
+Min/Max Wave Ht (ft) - <%= p['swell']['minBreakingHeight'] %>/<%= @user.surf_data[0]['swell']['minBreakingHeight'] %>, Wind Direction - <%= p['swell']['components']['combined']['compassDirection'] %>, Temperature - <%= p['condition']['temperature']%> <%= @user.surf_data[0]['condition']['unit'] %>
+Reported at - <%= Time.at(@user.surf_data[0]['localTimestamp']).to_time %>
+<% end %>
 
 Contact Information / Feedback
 ===============================================

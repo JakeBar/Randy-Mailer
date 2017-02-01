@@ -1,9 +1,5 @@
 # file: lib/tasks/email_tasks.rake
 
-class User
-  attr_accessor :login, :email, :surf_data
-end
-
 desc 'send surf report'
 task send_surf_report: :environment do
 

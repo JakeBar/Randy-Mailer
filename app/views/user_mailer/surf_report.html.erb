@@ -4,17 +4,26 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+  <p>
+    <% @user.surf_data.each do |p| %>
+      <td> <%= p['localTimestamp'] %> which is <%= Time.at(p['localTimestamp']).to_time %>/td>
+      <br>
+      <td> <%= p %> </td>
+  <br>
+    <% end %>
+  </p>
     <h1>Welcome, <%= @user.login %></h1>
     <p>
       Today's surf report rating:
-      <%= @user.surf_data['solidRating'] %>/5.<br>
+      <%= @user.surf_data[0] %>/5.<br>
     </p>
     <p>
       Reported at:
-      <%= Time.at(@user.surf_data['localTimestamp']).to_time %>.<br>
+      <%= Time.at(@user.surf_data[0]['localTimestamp']).to_time %>.<br>
     </p>
+
     <p>
-      Evening Forcast:
+      Evening Foreast:
     </p>
     <p>
       Got a suggestion or feedback for this report? Send an email to <%= @user.email %>.
