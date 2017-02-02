@@ -35,6 +35,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Whenever to create & manage cronjobs
 gem 'whenever', require: false
 
+# Use Premailer-Rails to convert bootstrap to inline mail stlying
+gem 'premailer-rails'
+gem 'nokogiri'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

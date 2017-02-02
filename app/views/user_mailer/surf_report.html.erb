@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-  <p>
-    <% @user.surf_data.each do |p| %>
-      <td> <%= p['localTimestamp'] %> which is <%= Time.at(p['localTimestamp']).to_time %>/td>
-      <br>
-      <td> <%= p %> </td>
-  <br>
-    <% end %>
-  </p>
-    <h1>Welcome, <%= @user.login %></h1>
-    <p>
-      Today's surf report rating:
-      <%= @user.surf_data[0] %>/5.<br>
-    </p>
-    <p>
-      Reported at:
-      <%= Time.at(@user.surf_data[0]['localTimestamp']).to_time %>.<br>
-    </p>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<h1>G'day, <%= @user.login %>!</h1>
+<p> Today's surf report rating: <%= @user.swell_score %>/5. That's pretty good! </p>
+<table class = "table">
+  <thead>
+  <td>  Basic Stats </td>
+  </thead>
+  <tbody>
+  <% @user.surf_data.each do |p| %>
+      <tr>
+        <td> <%= Time.at(p['localTimestamp']).strftime("%a %d %I:%M %p") %> </td>
+        <td> Min/Max Wave Ht (ft) - <%= p['swell']['minBreakingHeight'] %>/<%= @user.surf_data[0]['swell']['minBreakingHeight'] %> </td>
+        <td> Wind Direction - <%= p['swell']['components']['combined']['compassDirection'] %> </td>
+        <td> Temperature - <%= p['condition']['temperature']%> <%= @user.surf_data[0]['condition']['unit'] %> </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
 
-    <p>
-      Evening Foreast:
-    </p>
-    <p>
-      Got a suggestion or feedback for this report? Send an email to <%= @user.email %>.
-    </p>
-    <p>
-      Have a great day!
-      Love - Randy, Surf Mailer
-    </p>
-  </body>
+<p>
+  <%= image_tag @user.surf_data.first['charts']['wind'] %>
+  <%= image_tag @user.surf_data.last['charts']['wind'] %>
+</p>
+<p>
+  Other local beaches
+</p>
+<p>
+  Anglesea - http://magicseaweed.com/Anglesea-Surf-Report/523/
+  Lorne - http://magicseaweed.com/Lorne-Surf-Report/522/
+  Torquay - http://magicseaweed.com/Torquay-Surf-Report/525/
+</p>
+<p>
+  Got a suggestion or feedback for this report? Send an email to <%= @user.email %>.
+</p>
+<p>
+  Have a great day!
+  Love - Randy, Surf Mailer
+</p>
+</body>
 </html>

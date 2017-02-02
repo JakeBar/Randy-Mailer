@@ -18,7 +18,7 @@ class UserMailer < ApplicationMailer
       # store applicable data
       data = User.new
       data.login =  'Jake'
-      data.email = 'jake.b.dev@gmail.com'
+      data.email = 's3380519@student.rmit.edu.au'
 
       # get three applicable dates for the next 24 hours
       time = Time.now.to_i
@@ -44,8 +44,21 @@ class UserMailer < ApplicationMailer
 
       data.surf_data = report_data
 
+      swell_values = Array.new
+      data.surf_data.each do |item|
+        swell_values.push(item['solidRating'])
+      end
+
+      # get the average swell score
+      swell_score = (swell_values.sum / swell_values.size.to_f).round
+
+      data.swell_score = swell_score
       @user = data
       @url  = 'http://randy.com/login'
-      mail(to: report_data.length, subject: 'Surf Report - Randy')
+
+      # given that the swell score is greater than 3, send email
+      # if (data.swell_score >= 3)
+        mail(to: @user.email, subject: 'Surf Report - Randy')
+      # end
     end
 end

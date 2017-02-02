@@ -1,19 +1,23 @@
-G'day, <%= @user.login %>
+G'day, <%= @user.login %>!
 ===============================================
 
-Today's surf report rating:
-
-<%= @user.surf_data[0]['solidRating'] %>/5. That's pretty good!
+Today's surf report rating: <%= @user.swell_score %>/5. That's pretty good!
 
 Basic Stats
 ===============================================
 
 <% @user.surf_data.each do |p| %>
-Min/Max Wave Ht (ft) - <%= p['swell']['minBreakingHeight'] %>/<%= @user.surf_data[0]['swell']['minBreakingHeight'] %>, Wind Direction - <%= p['swell']['components']['combined']['compassDirection'] %>, Temperature - <%= p['condition']['temperature']%> <%= @user.surf_data[0]['condition']['unit'] %>
-Reported at - <%= Time.at(@user.surf_data[0]['localTimestamp']).to_time %>
+    <%= Time.at(p['localTimestamp']).strftime("%a %d %I:%M %p") %>
+    Min/Max Wave Ht (ft) - <%= p['swell']['minBreakingHeight'] %>/<%= @user.surf_data[0]['swell']['minBreakingHeight'] %>, Wind Direction - <%= p['swell']['components']['combined']['compassDirection'] %>, Temperature - <%= p['condition']['temperature']%> <%= @user.surf_data[0]['condition']['unit'] %>
 <% end %>
 
-Contact Information / Feedback
+Other local beaches
+===============================================
+Anglesea - http://magicseaweed.com/Anglesea-Surf-Report/523/
+Lorne - http://magicseaweed.com/Lorne-Surf-Report/522/
+Torquay - http://magicseaweed.com/Torquay-Surf-Report/525/
+
+Feedback
 ===============================================
 
 Got a suggestion or feedback for this report? Send an email to <%= @user.email %>.
