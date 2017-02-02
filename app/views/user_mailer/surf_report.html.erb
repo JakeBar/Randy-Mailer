@@ -2,45 +2,47 @@
 <html>
 <head>
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <%= stylesheet_link_tag "application", media: "all" %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<h1>G'day, <%= @user.login %>!</h1>
-<p> Today's surf report rating: <%= @user.swell_score %>/5. That's pretty good! </p>
-<table class = "table">
-  <thead>
-  <td>  Basic Stats </td>
-  </thead>
-  <tbody>
-  <% @user.surf_data.each do |p| %>
-      <tr>
-        <td> <%= Time.at(p['localTimestamp']).strftime("%a %d %I:%M %p") %> </td>
-        <td> Min/Max Wave Ht (ft) - <%= p['swell']['minBreakingHeight'] %>/<%= @user.surf_data[0]['swell']['minBreakingHeight'] %> </td>
-        <td> Wind Direction - <%= p['swell']['components']['combined']['compassDirection'] %> </td>
-        <td> Temperature - <%= p['condition']['temperature']%> <%= @user.surf_data[0]['condition']['unit'] %> </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="container-fluid" style="width:600px">
+  <div class="row">
+    <h4 class="col-sm-12"> G'day, <%= @user.login %>. Tomorrow's surf report rating is <b><%= @user.swell_score %>/5</b>. That's pretty good! </h4>
+  </div>
+  <table class = "table table-condensed">
+    <thead>
+    <td>  Time </td>
+    <td>  Swell Height </td>
+    <td>  Wind Direction </td>
+    <td>  Temperature </td>
+    </thead>
+    <tbody>
+    <% @user.surf_data.each do |p| %>
+        <tr>
+          <td> <%= Time.at(p['localTimestamp']).strftime("%a %d %I:%M %p") %> </td>
+          <td> <%= p['swell']['minBreakingHeight'] %>-<%= @user.surf_data[0]['swell']['minBreakingHeight'] %>ft </td>
+          <td> <%= p['swell']['components']['combined']['compassDirection'] %> </td>
+          <td> <%= p['condition']['temperature']%>&deg;C</td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@user.surf_data.first['charts']['wind'] %>" alt="Morning Image"> </div>
+    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@user.surf_data.first['charts']['wind'] %>" alt="Morning Image"> </div>
+  </div>
 
-<p>
-  <%= image_tag @user.surf_data.first['charts']['wind'] %>
-  <%= image_tag @user.surf_data.last['charts']['wind'] %>
-</p>
-<p>
-  Other local beaches
-</p>
-<p>
-  Anglesea - http://magicseaweed.com/Anglesea-Surf-Report/523/
-  Lorne - http://magicseaweed.com/Lorne-Surf-Report/522/
-  Torquay - http://magicseaweed.com/Torquay-Surf-Report/525/
-</p>
-<p>
-  Got a suggestion or feedback for this report? Send an email to <%= @user.email %>.
-</p>
-<p>
-  Have a great day!
-  Love - Randy, Surf Mailer
-</p>
+  <div class="row">
+    <br>
+    <div class="col-sm-12" style="text-align: center">
+      Check out
+      <a href="http://magicseaweed.com/Anglesea-Surf-Report/523/" target="_blank">Anglesea</a>,
+      <a href="http://magicseaweed.com/Lorne-Surf-Report/522/" target="_blank">Lorne</a>,
+      <a href="http://magicseaweed.com/Torquay-Surf-Report/525/" target="_blank">Torquay</a>.
+      Got feedback? Reply to this email!
+    </div>
+  </div>
+</div>
 </body>
 </html>

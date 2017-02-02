@@ -20,29 +20,24 @@ class UserMailer < ApplicationMailer
       data.login =  'Jake'
       data.email = 's3380519@student.rmit.edu.au'
 
-      # get three applicable dates for the next 24 hours
+      # get reports for the next 24 hours
       time = Time.now.to_i
 
-      report_data = result
       iterator = 0
 
-      report_data.each do |item|
+      daily_data = Array.new
+      result.each do |item|
 
-        iterator += 1
-
-        #if the report time is beyond one of the first 8 three hour intervals, remove it from the stack
-        if (iterator > 8)
-          report_data.pop
+        # if the report time has already passed,
+        # OR
+        # it's more than 24 hours later than local time
+        # remove from the stack
+        if ( (item['localTimestamp'] >= time) && (item['localTimestamp'] <= (time + 60 * 60 * 24)))
+          daily_data.push(item)
         end
-
-        # if the report time has already passed, remove it from the stack
-        if (item['localTimestamp'] <= time)
-          report_data.shift
-        end
-        report_data.pop
       end
 
-      data.surf_data = report_data
+      data.surf_data = daily_data
 
       swell_values = Array.new
       data.surf_data.each do |item|
@@ -58,7 +53,7 @@ class UserMailer < ApplicationMailer
 
       # given that the swell score is greater than 3, send email
       # if (data.swell_score >= 3)
-        mail(to: @user.email, subject: 'Surf Report - Randy')
+        mail(to: @user.email, subject: 'Surf Report - Fairhaven')
       # end
     end
 end
