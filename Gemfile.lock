@@ -85,6 +85,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    pg (0.18.4)
     premailer (1.9.2)
       css_parser (>= 1.4.8)
       htmlentities (>= 4.0.0)
@@ -170,6 +171,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   nokogiri
+  pg
   premailer-rails
   rails (= 5.0.1)
   sass-rails (~> 5.0)
