@@ -1,28 +1,31 @@
-== README
+== Randy Mailer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Randy is a scheduled Mailer implemented in Ruby on Rails.
 
-Things you may want to cover:
+## About
+This mailer will check if the surf forecast in Fairhaven is good in the next 24 hours. If the surf is good, information is sent via email.
+The email includes the surf height, temperatures, forecast & and wind graphs.
 
-* Ruby version
+## Configuration
+- Ruby 2.3.0
+- Rails 5.0.1
+- macOS 10.12.2
 
-* System dependencies
+## Services used
+- Heroku. For hosting & scheduling. Can be configured to execute a rake task every 10 minutes, hour or day.
+- [Magic Seaweed API](magicseaweed.com/developer/forecast-api). Used to acquire all surf data. Data is already formatted and processed.
 
-* Configuration
+## Installation & Deployment
 
-* Database creation
+- Install [Rails](http://railsapps.github.io/installing-rails.html)
+- Configure stmp settings
+- Serve locally or with [Heroku](https://www.heroku.com)
+- If serving locally, use the [whenever gem](https://github.com/javan/whenever) to configure chronjobs easily.
 
-* Database initialization
+## How to Contribute
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+1. Fork it
+2. Create your feature branch (git checkout -b my-newfeature)
+3. Commit your changes (git commit -am 'Some helpful feature')
+4. Push (git push origin my-new-feature)
+5. Create a new Pull Request

@@ -38,9 +38,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use Whenever to create & manage cronjobs
-gem 'whenever', require: false
-
 # Use Premailer-Rails to convert bootstrap to inline mail stlying
 gem 'premailer-rails'
 gem 'nokogiri'
