@@ -21,11 +21,11 @@
     <tbody>
     <% @user.surf_data.each do |p| %>
         <tr>
-          <td style="text-align: right"> <%= Time.at(p['localTimestamp']).strftime("%a %d %I:%M %p") %> </td>
+          <td> <%= Time.at(p['localTimestamp']).strftime("%a %d %I:%M %p") %> </td>
           <td> <%= p['swell']['minBreakingHeight'] %>-<%= @user.surf_data[0]['swell']['minBreakingHeight'] %>ft </td>
           <td> <%= p['swell']['components']['combined']['compassDirection'] %> </td>
           <td> <%= p['condition']['temperature']%>&deg;C </td>
-          <td>  <img class="img-responsive" style="margin: 0 auto;" src="http://cdnimages.magicseaweed.com/30x30/<%= p['condition']['weather'] %>.png" alt="<%= p['condition']['weather'] %>"></td>
+          <td style="padding: 0px">  <img class="img-responsive" style="margin: 0 auto;" src="http://cdnimages.magicseaweed.com/30x30/<%= p['condition']['weather'] %>.png" alt="<%= p['condition']['weather'] %>"></td>
         </tr>
     <% end %>
     </tbody>
