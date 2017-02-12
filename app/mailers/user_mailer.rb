@@ -5,6 +5,10 @@ class UserMailer < ApplicationMailer
 
       result = get_surf_data()
 
+      if (result == nil)
+        return result
+      end
+
       # store applicable data
       @login =  user
       @email =  email
@@ -14,17 +18,22 @@ class UserMailer < ApplicationMailer
       @url  = 'http://randy.com/login'
 
       # given that the swell score is greater than x, send email
-      # if (data.swell_score > 1)
+      if (@swell_score >= 2)
         mail(to: email, subject: 'Surf Report - Fairhaven')
-      # end
+      end
     end
 
   # get_surf_data() - get the surf data from MagicSeaweed API
   def get_surf_data()
-    url = 'http://magicseaweed.com/api/1/forecast/?spot_id=1070'
+    url = "http://magicseaweed.com/api/#{ENV["MAGIC_SEAWEED_API_KEY"]}/forecast/?spot_id=1070"
     uri = URI(url)
+
     response = Net::HTTP.get(uri)
-    return ActiveSupport::JSON.decode(response)
+    if (response != '')
+      return ActiveSupport::JSON.decode(response)
+    else
+      return nil
+    end
   end
 
   # filter_surf_results(surf_data) - filter out results outside the next 24 hours
