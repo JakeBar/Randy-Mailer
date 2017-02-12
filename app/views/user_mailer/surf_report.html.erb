@@ -8,7 +8,7 @@
 <body>
 <div class="container-fluid" style="width:600px">
   <div class="row">
-    <h4 class="col-sm-12"> G'day, <%= @user.login %>. Tomorrow's surf report rating is <b><%= @user.swell_score %>/5</b>. That's pretty good! </h4>
+    <h4 class="col-sm-12"> G'day, <%= @login %>. Tomorrow's surf report rating is <b><%= @swell_score %>/5</b>. That's pretty good! </h4>
   </div>
   <table class = "table table-condensed" style="text-align: center">
     <thead>
@@ -19,10 +19,10 @@
     <td>  Forecast </td>
     </thead>
     <tbody>
-    <% @user.surf_data.each do |p| %>
+    <% @surf_data.each do |p| %>
         <tr>
           <td> <%= Time.at(p['localTimestamp']).strftime("%a %d %I:%M %p") %> </td>
-          <td> <%= p['swell']['minBreakingHeight'] %>-<%= @user.surf_data[0]['swell']['minBreakingHeight'] %>ft </td>
+          <td> <%= p['swell']['minBreakingHeight'] %>-<%= p['swell']['maxBreakingHeight'] %>ft </td>
           <td> <%= p['swell']['components']['combined']['compassDirection'] %> </td>
           <td> <%= p['condition']['temperature']%>&deg;C </td>
           <td style="padding: 0px">  <img class="img-responsive" style="margin: 0 auto;" src="http://cdnimages.magicseaweed.com/30x30/<%= p['condition']['weather'] %>.png" alt="<%= p['condition']['weather'] %>"></td>
@@ -31,8 +31,8 @@
     </tbody>
   </table>
   <div class="row">
-    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@user.surf_data.first['charts']['wind'] %>" alt="Morning Image"> </div>
-    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@user.surf_data.last['charts']['wind'] %>" alt="Morning Image"> </div>
+    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@surf_data.first['charts']['wind'] %>" alt="Morning Image"> </div>
+    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@surf_data.last['charts']['wind'] %>" alt="Morning Image"> </div>
   </div>
 
   <div class="row">

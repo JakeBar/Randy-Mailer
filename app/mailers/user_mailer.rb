@@ -6,17 +6,16 @@ class UserMailer < ApplicationMailer
       result = get_surf_data()
 
       # store applicable data
-      data = User.new
-      data.login =  user
-      data.email =  email
-      data.surf_data = filter_surf_results(result)
-      data.swell_score = get_surf_score(data.surf_data)
-      @user = data
+      @login =  user
+      @email =  email
+      @surf_data = filter_surf_results(result)
+      @swell_score = get_surf_score(@surf_data)
+
       @url  = 'http://randy.com/login'
 
       # given that the swell score is greater than x, send email
-      # if (data.swell_score > 2)
-        mail(to: @user.email, subject: 'Surf Report - Fairhaven')
+      # if (data.swell_score > 1)
+        mail(to: email, subject: 'Surf Report - Fairhaven')
       # end
     end
 
