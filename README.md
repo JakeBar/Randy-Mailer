@@ -7,7 +7,7 @@ Randy is a scheduled Mailer implemented in Ruby on Rails. It sends an email to p
 This mailer will check if the surf forecast in Fairhaven is good in the next 24 hours. If the surf is good, a surf forecast is sent via email.
 The email includes the surf height, temperatures, forecast & and wind graphs.
 
-![Screenshot](https://github.com/JakeBar/Randy-Mailer/tree/master/public/Screenshot.png)
+![Screenshot](public/Screenshot.png)
 
 ## Configuration
 
