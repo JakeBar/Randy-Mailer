@@ -5,7 +5,6 @@ task send_surf_report: :environment do
   puts "sending surf report(s)"
   emails = [["Jake", ENV["GMAIL_USERNAME"]],
             ["Josh",ENV["JOSH_EMAIL"]],
-            ["Reuben",ENV["REUBEN_EMAIL"]],
             ["Ollie",ENV["OLLIE_EMAIL"]]
   ]
 
