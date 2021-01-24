@@ -1,13 +1,13 @@
-source "https://rubygems.org"
-ruby "2.7.1"
+source 'https://rubygems.org'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.1'
 gem 'bundler', '2.1.4'
+gem 'rails', '5.2.1'
 # Use sqlite3 as the database for Active Record. Use Heroku for production
 group :development, :test do
-  gem 'sqlite3'
   gem 'rubocop'
+  gem 'sqlite3'
 end
 
 group :production do
@@ -43,8 +43,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # Use Premailer-Rails to convert bootstrap to inline mail stlying
-gem 'premailer-rails'
 gem 'nokogiri'
+gem 'premailer-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
