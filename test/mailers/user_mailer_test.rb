@@ -19,7 +19,7 @@ class UserMailerTest < ActionMailer::TestCase
     # Test the body of the sent email contains what we expect it to
     assert_equal ['notifications@randy.com'], email.from
     assert_equal ['randy@example.com'], email.to
-    assert_equal 'Surf Report - Fairhaven', email.subject
+    assert_equal 'Surf Report - Maroochydore', email.subject
   end
 
 

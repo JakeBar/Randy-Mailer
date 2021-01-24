@@ -1,14 +1,17 @@
-# file: lib/tasks/email_tasks.rake
+require 'json'
 
 desc 'send surf report'
 task send_surf_report: :environment do
   puts "sending surf report(s)"
-  emails = [["Jake", ENV["GMAIL_USERNAME"]],
-            ["Ollie",ENV["OLLIE_EMAIL"]]
-  ]
-
-  emails.each do |item|
-    UserMailer.surf_report(item[0], item[1]).deliver!
+  email_list = ENV["USER_LIST"] # e.g. '{"Jake":"jake.b.dev@gmail.com"}'
+  if email_list
+    emails = JSON.parse(email_list)
+    puts emails
+    emails.each do |key, value|
+      UserMailer.surf_report(key, value).deliver!
+    end
+    puts "done."
+  else
+    puts 'ENV["USER_LIST"] not set.'
   end
-  puts "done."
 end

@@ -11,9 +11,22 @@ The email includes the surf height, temperatures, forecast & and wind graphs.
 
 ## Configuration
 
-- Ruby 2.3.0
+- Ruby 2.7.1
 - Rails 5.0.1
-- macOS 10.12.2
+
+## Setup
+
+```bash
+# install ruby dependancies
+bundle install
+```
+
+## Usage
+
+```bash
+# trigger emails
+rake send_surf_report
+```
 
 ## Services used
 

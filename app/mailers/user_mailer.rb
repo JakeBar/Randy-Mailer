@@ -19,13 +19,13 @@ class UserMailer < ApplicationMailer
 
       # given that the swell score is greater than x, send email
       if (@swell_score >= 2)
-        mail(to: email, subject: 'Surf Report - Fairhaven')
+        mail(to: email, subject: 'Surf Report - Maroochydore Beach')
       end
     end
 
   # get_surf_data() - get the surf data from MagicSeaweed API
   def get_surf_data()
-    url = "http://magicseaweed.com/api/#{ENV["MAGIC_SEAWEED_API_KEY"]}/forecast/?spot_id=1070&units=UK"
+    url = "http://magicseaweed.com/api/#{ENV["MAGIC_SEAWEED_API_KEY"]}/forecast/?spot_id=6128&units=UK"
     uri = URI(url)
 
     response = Net::HTTP.get(uri)
