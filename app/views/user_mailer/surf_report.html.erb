@@ -8,7 +8,7 @@
 <body>
 <div class="container-fluid" style="width:600px">
   <div class="row">
-    <h4 class="col-sm-12"> G'day, <%= @login %>. Tomorrow's surf report rating is <b><%= @swell_score %>/5</b>.</h4>
+    <h4 class="col-sm-12"> G'day, <%= @login %>. Today's surf report rating is <b><%= @swell_score %>/5</b>.</h4>
   </div>
   <table class = "table table-condensed" style="text-align: center">
     <thead>
@@ -31,8 +31,7 @@
     </tbody>
   </table>
   <div class="row">
-    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@surf_data.first['charts']['wind'] %>" alt="Morning Image"> </div>
-    <div class="col-xs-6 col-sm-6 and col-md-6" > <img class="img-responsive" src=" <%=@surf_data.last['charts']['wind'] %>" alt="Morning Image"> </div>
+    <div class="col-xs-12 col-sm-12 and col-md-12" > <img class="img-responsive" src=" <%=@surf_data.first['charts']['wind'] %>" alt="Morning Image"> </div>
   </div>
 
   <div class="row">

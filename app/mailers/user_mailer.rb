@@ -35,7 +35,7 @@ class UserMailer < ApplicationMailer
       # OR
       # it's more than 24 hours later than local time
       # remove from the stack
-      if (item['localTimestamp'] >= (current_time - 15)) && (item['localTimestamp'] <= (current_time + 60 * 60 * 15))
+      if (item['localTimestamp'] >= (current_time - 90)) && (item['localTimestamp'] <= (current_time + 60 * 60 * 15))
         data.push(item)
       end
     end
